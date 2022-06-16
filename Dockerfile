@@ -10,6 +10,7 @@ RUN a2enmod rewrite
 
 # Copy application source
 COPY ./ /var/www/
+ADD ./public/ /var/www/html
 RUN chown -R www-data:www-data /var/www
 
 CMD ["start-apache"]
