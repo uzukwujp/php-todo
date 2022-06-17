@@ -2,7 +2,7 @@ FROM php:7.2-apache
 
 USER root
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade && apt-get install -y \
     libpng-dev \
     zlib1g-dev \
     libxml2-dev \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     unzip \
     && docker-php-ext-configure gd \
-    && php-mbstring \
+    && php7.2-mbstring \
     && php-ext-dom \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql \
