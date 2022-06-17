@@ -2,6 +2,9 @@ FROM php:7.2-apache
 
 USER root
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN echo "deb http://archive.ubuntu.com/ubuntu bionic main multiverse restricted universe" >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu bionic-security main multiverse restricted universe" >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu bionic-updates main multiverse restricted universe" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     zlib1g-dev \
