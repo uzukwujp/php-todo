@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY apache-config.conf  /etc/apache2/sites-available/000-default.conf
 COPY ./ /var/www/html
-COPY ./start-apache ./start-apache
+COPY ./start-apache.sh ./start-apache.sh
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
