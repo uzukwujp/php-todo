@@ -29,4 +29,4 @@ RUN chown -R www-data:www-data /var/www/html \
 
 ENV PORT=8000
 
-ENTRYPOINT [ "sh", "start-apache" ]
+ENTRYPOINT [ "sh", "start-apache.sh" ]
