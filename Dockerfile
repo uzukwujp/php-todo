@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     curl \
     unzip \
     && docker-php-ext-configure gd \
-    && php-xml \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mysqli \
