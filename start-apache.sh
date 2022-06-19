@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 composer install --no-progress --no-interaction
 php artisan migrate 
