@@ -3,7 +3,7 @@ services:
   tooling_frontend:
     build: .
     ports:
-      - "8000:80"
+      - "5000:80"
     volumes:
       - tooling_frontend:/var/www/html
     links:
