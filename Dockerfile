@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-source delete
 
-COPY ./ /.
+COPY . .
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -28,4 +28,4 @@ RUN chown -R www-data:www-data /var/www/html \
 
 ENV PORT=8000
 
-ENTRYPOINT [  "./start-apache.sh" ]
+ENTRYPOINT [  "start-apache.sh" ]
