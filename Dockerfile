@@ -1,7 +1,8 @@
 FROM php:7.4.30-apache
 
 USER root
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+WORKDIR  /var/www/html
+
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     zlib1g-dev \
@@ -18,9 +19,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-source delete
 
-COPY apache-config.conf  /etc/apache2/sites-available/000-default.conf
-COPY ./ /var/www/html
-COPY ./start-apache.sh ./start-apache.sh
+COPY ./ /.
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -29,4 +28,4 @@ RUN chown -R www-data:www-data /var/www/html \
 
 ENV PORT=8000
 
-ENTRYPOINT [ "sh", "start-apache.sh" ]
+ENTRYPOINT [  "./start-apache.sh" ]
