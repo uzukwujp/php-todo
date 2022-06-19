@@ -3,7 +3,7 @@ services:
   tooling_frontend:
     build: .
     ports:
-      - 8000:80
+      - 8000:8000
     working_dir: /var/www/html
     links:
       - db
