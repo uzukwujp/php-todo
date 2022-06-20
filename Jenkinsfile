@@ -19,7 +19,7 @@ pipeline {
 
         stage ('Build Docker Image') {
             steps {
-                script{
+                script {
 
                        sh "docker build -t uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER} ."
                 }
@@ -27,9 +27,23 @@ pipeline {
         }
 
         stage ('Push Docker Image') {
+            steps{
+                script {
             sh "docker login -u ${env.username} -p ${env.password}"
 
             sh "docker push uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+            }
+          }
+        }
+
+        stage ('logout Docker') {
+            steps {
+                script {
+
+                    sh "docker logout"
+
+                }
+            }
         }
 
     }
