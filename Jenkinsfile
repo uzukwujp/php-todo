@@ -17,17 +17,19 @@ pipeline {
       }
         }
 
-        stage ('Build and Push Docker Image') {
+        stage ('Build Docker Image') {
             steps {
                 script{
-                
-                docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                    def buidImage = docker.build("uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
 
-                    buildImage.push()
-                   }
+                       sh "docker build -t uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER} ."
                 }
             }
+        }
+
+        stage ('Push Docker Image') {
+            sh "docker login -u ${env.username} -p ${env.password}"
+
+            sh "docker push uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
         }
 
     }
