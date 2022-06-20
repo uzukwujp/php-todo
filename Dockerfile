@@ -1,4 +1,4 @@
-FROM php:7.4.30-apache
+FROM php:7.4.30-alpine
 
 USER root
 WORKDIR  /var/www/html
