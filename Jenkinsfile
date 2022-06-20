@@ -22,7 +22,6 @@ pipeline {
                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                     def buidImage = docker.build("uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
 
-                    #push the image to docker hub
                     buildImage.push()
                 }
             }
