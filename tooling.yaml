@@ -9,7 +9,7 @@ services:
       - data
     depends_on:
       - data
-  database:
+  data:
     image: mysql:5.7
     restart: always
     environment:
