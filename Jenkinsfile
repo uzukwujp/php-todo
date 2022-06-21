@@ -50,7 +50,7 @@ pipeline {
             steps {
                 script {
                     sh " docker-compose -f tooling.yaml down"
-                    sh "docker system prune -a"
+                    sh "docker system prune -af"
                 }
             }
         }
