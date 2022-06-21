@@ -6,8 +6,8 @@ services:
       - 8000:8000
     working_dir: /var/www/html
     links:
-      - db
-  db:
+      - database
+  database:
     image: mysql:5.7
     restart: always
     environment:
