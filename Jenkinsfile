@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
 
-                    sh "curl -- version"
+                    sh "curl --version"
                     sh  "curl  http://100.24.117.117:8000"
                 }
             }
