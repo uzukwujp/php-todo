@@ -36,6 +36,31 @@ pipeline {
           }
         }
 
+        stage ('Start-up Container') {
+            steps{
+                script {
+                    sh "docker-compose -f tooling.yaml up"
+                }
+            }
+        }
+
+        stage ('Test Container') {
+            steps {
+                script {
+                    sh " curl -s -o /dev/null -w "%{http_code}" http://localhost:8000"
+                }
+            }
+        }
+
+        stage ('Clean Up') {
+            steps {
+                script {
+                    sh " docker-compose -f tooling.yaml down"
+                    sh "docker system prune -a"
+                }
+            }
+        }
+
         stage ('logout Docker') {
             steps {
                 script {
