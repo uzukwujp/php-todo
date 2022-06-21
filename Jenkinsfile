@@ -36,14 +36,6 @@ pipeline {
           }
         }
 
-        stage ('Start-up Container') {
-            steps{
-                script {
-                    sh "docker-compose -f tooling.yaml up"
-                }
-            }
-        }
-
         stage ('Test Container') {
             steps {
                 script {
