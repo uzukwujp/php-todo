@@ -39,7 +39,7 @@ pipeline {
         stage ('Test Container') {
             steps {
                 script {
-                    sh " curl -s -o /dev/null -w "%{http_code}" http://localhost:8000"
+                    sh " curl -s -o /dev/null -w "%{http_code}" http://100.24.117.117:8000"
                 }
             }
         }
