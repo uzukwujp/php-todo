@@ -34,7 +34,7 @@ pipeline {
         stage ('Start Up Container') {
             steps {
                 script {
-                    sh "docker run -d --name todo-app-${env.random_num} -p 8000:8000 uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+                    sh "docker run -d --name todo-app-${env.random_num} -p 9000:8000 uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
                 }
             }
         }
