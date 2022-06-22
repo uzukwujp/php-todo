@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        max = 50
+        random_num = "${Math.abs(new Random().nextInt(max+1))}"
+    }
+
     stages {
 
         stage('Initial Cleanup') {
@@ -29,7 +34,7 @@ pipeline {
         stage ('Start Up Container') {
             steps {
                 script {
-                    sh "docker run -d --name todo-app -p 8000:8000 uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+                    sh "docker run -d --name todo-app-${env.random_num} -p 8000:8000 uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
                 }
             }
         }
