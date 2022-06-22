@@ -43,7 +43,7 @@ pipeline {
         stage ('Test Container') {
             steps {
                 script {
-                    //sh "curl -i localhost:8000"
+                    /* sh "curl -i localhost:8000" */
                 }
             }
         }
