@@ -43,6 +43,8 @@ pipeline {
         stage ('Test Container') {
             steps {
                 script {
+
+                     sh "sleep 10"
                      sh "curl -i 3.236.225.2:8000"
                 }
             }
