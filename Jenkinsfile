@@ -34,7 +34,7 @@ pipeline {
         stage ('Start Up Container') {
             steps {
                 script {
-                    sh "docker run -d --name todo-app-${env.random_num} -p 6000:8000 uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+                    sh "docker run -d --name todo-app-${env.random_num} -p 7000:8000 uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
                 }
             }
         }
@@ -43,7 +43,7 @@ pipeline {
         stage ('Test Container') {
             steps {
                 script {
-                    sh  "curl -i http://3.236.225.2:6000"
+                    sh  "curl -i http://3.236.225.2:7000"
                 }
             }
         }
