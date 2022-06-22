@@ -26,6 +26,23 @@ pipeline {
             }
         }
 
+        stage ('Start Up Container') {
+            steps {
+                script {
+                    sh "docker run --name todo-app -it -p 8000:8000 uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+                }
+            }
+        }
+
+
+        stage ('Test Container') {
+            steps {
+                script {
+                    sh  "curl -i http://3.236.225.2:8000"
+                }
+            }
+        }
+
         stage ('Push Docker Image') {
             steps{
                 script {
@@ -36,21 +53,14 @@ pipeline {
           }
         }
 
-        stage ('Test Container') {
-            steps {
-                script {
-
-                    sh "curl --version"
-                    sh  "curl  http://100.24.117.117:8000"
-                }
-            }
-        }
+        
 
         stage ('Clean Up') {
             steps {
                 script {
-                    sh " docker-compose -f tooling.yaml down"
-                    sh "docker system prune -af"
+                    sh " docker stop todo-app"
+                    sh "docker rm todo-app"
+                    sh "docker rmi uzukwujp/php-todo:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
                 }
             }
         }
